@@ -2,44 +2,52 @@ class PlanetGenerator {
     constructor(canvasEl) {
         this.canvasEl = canvasEl;
         this.ctx = canvasEl.getContext('2d');
-        this.pixels = Create2DArray(32);
+        this.pixels = this.Create2DArray(32);
         this.canvasEl.width = 256;
         this.canvasEl.height = 256;
     }
 
-    render() {
-
+    Create2DArray(rows) {
+        const arr = [];
+        for (let i = 0; i < rows; i++) {
+            arr[i] = [];
+        }
+        return arr;
     }
 
-    save() {
-
+    render() {
+        this.ctx.scale(8, 8);
+        for (let x in this.pixels) {
+            for (let y in this.pixels) {
+                const px = this.getPixel(x, y);
+                this.ctx.fillStyle = px.rgba;
+                this.ctx.fillRect(x, y, 1, 1);
+            }
+        }
     }
 
     getPixel(x, y) {
+        return {
+            x,
+            y,
+            rgba: this.pixels[x][y] ? this.pixels[x][y] : 'rgba(0, 0, 0, 255)'
+        };
+    }
 
+    rgba(r, g, b, a) {
+        return `rgba(${r}, ${b}, ${g}, ${a})`;
     }
 
     setPixel(x, y, rgba) {
-        this.ctx.scale(8, 8);
         this.pixels[x][y] = rgba;
-        this.ctx.fillStyle = rgba;
-        this.ctx.fillRect(x, y, 1, 1);
-        console.log(this.pixels);
-
     }
-}
-
-function Create2DArray(rows) {
-    const arr = [];
-    for (let i = 0; i < rows; i++) {
-        arr[i] = [];
-    }
-    return arr;
 }
 
 function initGenerator() {
-    const pGen = new PlanetGenerator(document.getElementById('planetCanvas'));
-    pGen.setPixel(12, 12, 'rgba(255, 0, 0, 255)');
+    const canvas = document.getElementById('planetCanvas');
+    const pGen = new PlanetGenerator(canvas);
+    pGen.setPixel(12, 12, pGen.rgba(255, 0, 0, 255));
+    pGen.render();
 }
 
 window.addEventListener('load', initGenerator);
