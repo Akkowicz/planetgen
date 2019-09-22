@@ -5,6 +5,10 @@ class PlanetGenerator {
         this.pixels = this.Create2DArray(32);
         this.canvasEl.width = 256;
         this.canvasEl.height = 256;
+        this.planet = {
+            radius: 0,
+            center: { x: 0, y: 0 }
+        };
     }
 
     Create2DArray(rows) {
@@ -86,12 +90,39 @@ class PlanetGenerator {
             }
         }
     }
+
+    background() {
+        const bgColor = this.rgba(
+            Math.round(Math.random() * 20 + 10),
+            Math.round(Math.random() * 20 + 10),
+            Math.round(Math.random() * 20 + 30),
+            255
+        );
+
+        for (let x in this.pixels) {
+            for (let y in this.pixels) {
+                this.pixels[x][y] = bgColor;
+
+                // Add stars?
+                if (Math.random() > 0.997) {
+                    let starColor = this.rgba(
+                        Math.round(Math.random() * 40 + 210),
+                        Math.round(Math.random() * 30 + 170),
+                        Math.round(Math.random() * 10 + 170),
+                        Math.round(Math.random() * 120 + 130)
+                    );
+                    this.pixels[x][y] = starColor;
+                }
+            }
+        }
+    }
 }
 
 function initGenerator() {
     const canvas = document.getElementById('planetCanvas');
     const pGen = new PlanetGenerator(canvas);
-    pGen.midPointCircle(16, 16, 10, pGen.rgba(40, 150, 70, 255));
+    pGen.background();
+    pGen.midPointCircle(16, 16, 8 + Math.round(Math.random() * 6), pGen.rgba(30, 50, 40, 255));
     pGen.render();
 }
 
