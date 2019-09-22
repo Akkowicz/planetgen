@@ -35,7 +35,7 @@ class PlanetGenerator {
     }
 
     rgba(r, g, b, a) {
-        return `rgba(${r}, ${b}, ${g}, ${a})`;
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
     }
 
     setPixel(x, y, rgba) {
