@@ -41,12 +41,57 @@ class PlanetGenerator {
     setPixel(x, y, rgba) {
         this.pixels[x][y] = rgba;
     }
+
+    midPointCircle(centerX, centerY, r, borderColor) {
+        let x = r;
+        let y = 0;
+
+        // Set four initial points
+        if (r > 0) {
+            this.setPixel(x + centerX, -y + centerY, borderColor);
+            this.setPixel(-x + centerX, y + centerY, borderColor);
+            this.setPixel(y + centerX, x + centerY, borderColor);
+            this.setPixel(-y + centerX, -x + centerY, borderColor);
+        }
+
+        // P value
+        let P = 1 - r;
+
+        while (x > y) {
+            y++;
+
+            if (P <= 0) {
+                P = P + 2 * y + 1;
+            } else {
+                x--;
+                P = P + 2 * y - 2 * x + 1;
+            }
+
+            // All points already set
+            if (x < y) {
+                break;
+            }
+
+            // Setting generated points
+            this.setPixel(x + centerX, y + centerY, borderColor);
+            this.setPixel(-x + centerX, y + centerY, borderColor);
+            this.setPixel(x + centerX, -y + centerY, borderColor);
+            this.setPixel(-x + centerX, -y + centerY, borderColor);
+
+            if (x !== y) {
+                this.setPixel(y + centerX, x + centerY, borderColor);
+                this.setPixel(-y + centerX, x + centerY, borderColor);
+                this.setPixel(y + centerX, -x + centerY, borderColor);
+                this.setPixel(-y + centerX, -x + centerY, borderColor);
+            }
+        }
+    }
 }
 
 function initGenerator() {
     const canvas = document.getElementById('planetCanvas');
     const pGen = new PlanetGenerator(canvas);
-    pGen.setPixel(12, 12, pGen.rgba(255, 0, 0, 255));
+    pGen.midPointCircle(16, 16, 10, pGen.rgba(40, 150, 70, 255));
     pGen.render();
 }
 
