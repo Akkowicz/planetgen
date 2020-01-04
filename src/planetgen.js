@@ -20,6 +20,64 @@ class PlanetGenerator {
             borderColor: this.rgba(20, 20, 30, 255),
             backgroundColor: ""
         };
+        this.planetTypes = {
+            gas: {
+                subtype: {
+                    ammonia: {
+
+                    },
+                    water: {
+
+                    },
+                    methane: {
+
+                    },
+                    alkali: {
+
+                    },
+                    silicate: {
+
+                    }
+                }
+            },
+            ocean: {
+                subtype: {
+                    water: {
+
+                    }
+                }
+            },
+            lava: {
+                subtype: {
+                    lava: {
+
+                    }
+                }
+            },
+            terrestrial: {
+                subtype: {
+                    silicate: {
+
+                    },
+                    carbon: {
+
+                    },
+                    iron: {
+
+                    },
+                    coreless: {
+
+                    }
+                }
+            },
+            ice: {
+                subtype: {
+                    superionic: {
+
+                    }
+                }
+            }
+        }
     }
 
     /**
