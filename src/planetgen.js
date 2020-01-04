@@ -10,7 +10,7 @@ class PlanetGenerator {
      */
     constructor(canvasEl) {
         this.canvasEl = canvasEl;
-        this.ctx = canvasEl.getContext('2d');
+        this.ctx = canvasEl.getContext("2d");
         this.pixels = this.Create2DArray(32);
         this.canvasEl.width = 256;
         this.canvasEl.height = 256;
@@ -18,7 +18,7 @@ class PlanetGenerator {
             radius: 0,
             center: { x: 16, y: 16 },
             borderColor: this.rgba(20, 20, 30, 255),
-            backgroundColor: ''
+            backgroundColor: ""
         };
     }
 
@@ -55,14 +55,14 @@ class PlanetGenerator {
      * @description
      * @param {*} x
      * @param {*} y
-     * @returns 
+     * @returns
      * @memberof PlanetGenerator
      */
     getPixel(x, y) {
         return {
             x,
             y,
-            rgba: this.pixels[x][y] ? this.pixels[x][y] : 'rgba(0, 0, 0, 255)'
+            rgba: this.pixels[x][y] ? this.pixels[x][y] : "rgba(0, 0, 0, 255)"
         };
     }
 
@@ -72,7 +72,7 @@ class PlanetGenerator {
      * @param {*} g
      * @param {*} b
      * @param {*} a
-     * @returns 
+     * @returns
      * @memberof PlanetGenerator
      */
     rgba(r, g, b, a) {
@@ -206,10 +206,10 @@ class PlanetGenerator {
         for (let x in this.pixels) {
             for (let y in this.pixels) {
                 if (this.isOnSurface(x, y)) {
-                    console.log('On surface!');
+                    console.log("On surface!");
                     this.setPixel(x, y, this.rgba(20, 40, 30, 255));
                 } else {
-                    console.log('Not on surface?');
+                    console.log("Not on surface?");
                     console.log({ x, y });
                 }
             }
@@ -231,11 +231,13 @@ class PlanetGenerator {
         );
     }
 }
+let pGen;
 
 function initGenerator() {
-    const canvas = document.getElementById('planetCanvas');
-    const pGen = new PlanetGenerator(canvas);
+    const canvas = document.getElementById("planetCanvas");
+    const generateButton = document.getElementById("generate-button");
+    pGen = new PlanetGenerator(canvas);
     pGen.createPlanet();
 }
 
-window.addEventListener('load', initGenerator);
+window.addEventListener("load", initGenerator);
