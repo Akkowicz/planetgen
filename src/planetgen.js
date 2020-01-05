@@ -24,19 +24,24 @@ class PlanetGenerator {
             gas: {
                 subtype: {
                     ammonia: {
-
+                        baseTemperature: 150,
+                        baseElements: ["nitrogen, hydrogen, helium"]
                     },
                     water: {
-
+                        baseTemperature: 250,
+                        baseElements: ["hydrogen", "oxygen", "helium"]
                     },
                     methane: {
-
+                        baseTemperature: 500,
+                        baseElements: ["hydrogen", "oxygen", "helium", "carbon", "nitrogen"]
                     },
                     alkali: {
-
+                        baseTemperature: 1300,
+                        baseElements: ["carbon", "oxygen", "sodium", "potassium", "lithium", "rubidium", "caesium"]
                     },
                     silicate: {
-
+                        baseTemperature: 1500,
+                        baseElements: ["silica", "oxygen", "iron", "vanadium", "titanium"]
                     }
                 }
             },
