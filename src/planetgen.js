@@ -5,7 +5,7 @@
 class PlanetGenerator {
     /**
      * @description Creates an instance of PlanetGenerator.
-     * @param {*} canvasEl
+     * @param {*} canvasEl html canvas node
      * @memberof PlanetGenerator
      */
     constructor(canvasEl) {
@@ -110,10 +110,10 @@ class PlanetGenerator {
     }
 
     /**
-     * @description
-     * @param {*} x
-     * @param {*} y
-     * @returns
+     * @description Get pixel data from location (x, y).
+     * @param {int} x
+     * @param {int} y
+     * @returns object with x, y, rgba
      * @memberof PlanetGenerator
      */
     getPixel(x, y) {
@@ -125,12 +125,12 @@ class PlanetGenerator {
     }
 
     /**
-     * @description
-     * @param {*} r
-     * @param {*} g
-     * @param {*} b
-     * @param {*} a
-     * @returns
+     * @description Generate rgba string from passed parameters
+     * @param {number} r red value, 0 - 255
+     * @param {number} g green value, 0 - 255
+     * @param {number} b blue value, 0 - 255
+     * @param {number} a alpha value, 0 - 255
+     * @returns rgba string
      * @memberof PlanetGenerator
      */
     rgba(r, g, b, a) {
@@ -139,9 +139,9 @@ class PlanetGenerator {
 
     /**
      * @description
-     * @param {*} x
-     * @param {*} y
-     * @param {*} rgba
+     * @param {number} x
+     * @param {number} y
+     * @param {string} rgba
      * @memberof PlanetGenerator
      */
     setPixel(x, y, rgba) {
@@ -150,10 +150,10 @@ class PlanetGenerator {
 
     /**
      * @description
-     * @param {*} centerX
-     * @param {*} centerY
-     * @param {*} r
-     * @param {*} borderColor
+     * @param {number} centerX
+     * @param {number} centerY
+     * @param {number} r
+     * @param {string} borderColor
      * @memberof PlanetGenerator
      */
     drawBorder(centerX, centerY, r, borderColor) {
@@ -225,7 +225,7 @@ class PlanetGenerator {
     }
 
     /**
-     * @description
+     * @description Generates basic planet info, type, temperature, colors, size.
      * @memberof PlanetGenerator
      */
     generateBasicPlanetData() {
@@ -289,12 +289,11 @@ class PlanetGenerator {
         );
     }
 }
-let pGen;
 
 function initGenerator() {
     const canvas = document.getElementById("planetCanvas");
     const generateButton = document.getElementById("generate-button");
-    pGen = new PlanetGenerator(canvas);
+    const pGen = new PlanetGenerator(canvas);
     pGen.createPlanet();
 }
 
